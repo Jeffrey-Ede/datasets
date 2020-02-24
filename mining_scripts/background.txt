@@ -1,0 +1,3 @@
+@echo off
+matlab -automation -r "surf(peaks); pause(5); quit"
+exit
