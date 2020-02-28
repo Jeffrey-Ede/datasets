@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 plt.rcParams["font.family"] = "Times New Roman"
 mpl.rcParams['xtick.direction'] = 'in'
 mpl.rcParams['ytick.direction'] = 'in'
-mpl.rcParams['savefig.dpi'] = 300
-fontsize = 9
+mpl.rcParams['savefig.dpi'] = 400
+fontsize = 6.5
 mpl.rcParams['axes.titlesize'] = fontsize
 mpl.rcParams['axes.labelsize'] = fontsize
 mpl.rcParams['xtick.labelsize'] = fontsize
@@ -58,7 +58,7 @@ def scale0to1(img):
 
 for i, (data_file, data_name, seed) in enumerate(zip(DATASET_FILES, DATASET_NAMES, SEEDS)):
 
-    if not i in [2]:
+    if not i in [1, 2]:
         continue
 
     dataset_filepath = DATA_LOC + "tsne_" + data_name + ".npy"
@@ -111,15 +111,26 @@ for i, (data_file, data_name, seed) in enumerate(zip(DATASET_FILES, DATASET_NAME
     if i == 1:
         s_num = 0
         examples = [
-            [[0.2612, 0.7293], [0.3280, 0.7124], [0.4194, 0.6800]],
+            [[0.2612, 0.7293], [0.3280, 0.7124], [0.5471, 0.6071]],
             [[0.8101, 0.3855], [0.8350, 0.3659], [0.6528, 0.5311]],
-            [[0.9384, 0.2963], [0.9279, 0.2496], [0.0695, 0.7595]],
             [[0.0764, 0.7630], [0.0776, 0.7463], [0.0545, 0.7474]],
-            [[0.2441, 0.2872], [0.1581, 0.3542], [0.2067, 0.3158]],
+            [[0.3871, 0.9391], [0.4212, 0.0777], [0.8406, 0.5966]],
+            [[0.2441, 0.2872], [0.1581, 0.3542], [0.4629, 0.2227]],
             [[0.5197, 0.6324], [0.5737, 0.8413], [0.5867, 0.8611]],
             [[0.5636, 0.3498], [0.8861, 0.2978], [0.5410, 0.5614]],
-            [[0.3871, 0.9391], [0.4212, 0.0777], [0.8406, 0.5966]],
+            [[0.9384, 0.2963], [0.9279, 0.2496], [0.0695, 0.7595]],
             ]
+        titles = [
+            "Dark Field Atom Columns",
+            "Bright Field Atom Columns",
+            "Nanowires",
+            "Atomic Resolution Nanowires",
+            "Incomplete Scans",
+            "Multilayer Heterostructures",
+            "Atomic Boundaries",
+            "Lacy Carbon Supports",
+            ]
+
     elif i == 2:
         s_num = 1
         examples = [
@@ -133,7 +144,18 @@ for i, (data_file, data_name, seed) in enumerate(zip(DATASET_FILES, DATASET_NAME
             [[0.5602, 0.1585], [0.4948, 0.4340], [0.2857, 0.6722]],
             ]
 
-    for e_num, positions in enumerate(examples):
+        titles = [
+            "Diffraction Patterns",
+            "Apertures Blocking Electrons",
+            "Block Copolymers",
+            "Lacy Carbon Supports",
+            "Vacuum at Specimen Edges",
+            "Nanowires",
+            "Multilayer Heterostructures",
+            "Particles"
+            ]
+
+    for e_num, (positions, title) in enumerate(zip(examples, titles)):
 
         imgs = []
         labels = []
@@ -156,5 +178,8 @@ for i, (data_file, data_name, seed) in enumerate(zip(DATASET_FILES, DATASET_NAME
 
                 ax.set_frame_on(False)
                 #ax.set_xlabel(labels[k-1])
+
+                if j == 2:
+                    plt.title(title)
 
         fig.savefig(DATA_LOC+f"table_examples/{s_num}-{e_num}.png", bbox_inches='tight')
