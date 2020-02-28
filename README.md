@@ -15,3 +15,6 @@ This repo has a few directories:
 `mining_scripts` - an assortment of mining scrips used to curate micrographs.  
 `stem_full_shapes` - to show the distribution of shapes of STEM full images
 
+# Contact
+
+Jeffrey Ede: j.m.ede@warwick.ac.uk
