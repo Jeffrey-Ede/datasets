@@ -8,8 +8,8 @@ There are three main datasets containing 19769 experimental STEM images, 17266 e
 
 Interactive visualizations can be created by running `display_visualization_files.py`. To create the visualizations you have the values of a couple of variables for data file locations.
 
-SAVE_DATA: Full save location of a NumPy file containing a dataset. Files for each visualizationa are in this repository.  
-SAVE_FILE: Full save location of a NumPy file containing tSNE map points. For example, from the datasets [main page](https://warwick.ac.uk/fac/sci/physics/research/condensedmatt/microscopy/research/machinelearning/).
+SAVE_DATA: Full save location of a NumPy file containing a dataset. For example, from the datasets [main page](https://warwick.ac.uk/fac/sci/physics/research/condensedmatt/microscopy/research/machinelearning/).  
+SAVE_FILE: Full save location of a NumPy file containing tSNE map points. Files for each visualization are in this repository and have the form "tsne_*.npy", where * is a wildcard.  
 
 An optional extra parameter, USE_FRAC, controls the portion of data points that are displayed. Use a value much less than 1 if your dataset is large and the visualization is slow/unresponsive. 
 
