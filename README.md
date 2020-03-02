@@ -6,7 +6,6 @@ There are three main datasets containing 19769 experimental STEM images, 17266 e
 
 # Interactive Visualizations
 
-Interactive visualizations are created with 
 
 # Other Contents
 
