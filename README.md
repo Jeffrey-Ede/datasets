@@ -1,8 +1,8 @@
 # Warwick Electron Microscopy Datasets
 
-This repository is for the preprint|paper "Warwick Electron Microscopy Datasets". This repository contains scripts used to curate datasets, their variants, and to create both static and interactive visualizations.
+This repository is for the preprint|paper "Warwick Electron Microscopy Datasets". This repository contains scripts used to curate datasets and their variants, and to create both static and interactive visualizations.
 
-There are three main datasets containing 19769 experimental STEM images, 17266 experimental TEM images, and 98340 simulated TEM exit wavefunctions. They are available [here](https://warwick.ac.uk/fac/sci/physics/research/condensedmatt/microscopy/research/machinelearning/).
+There are three main datasets containing 19769 experimental STEM images, 17266 experimental TEM images and 98340 simulated TEM exit wavefunctions. They are available [here](https://warwick.ac.uk/fac/sci/physics/research/condensedmatt/microscopy/research/machinelearning/).
 
 # Interactive Visualizations
 
