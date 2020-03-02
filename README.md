@@ -24,9 +24,9 @@ There are a few folders:
 
 In addition, there are a few noteable fles:
 
-`create_static_displays`: Creates tSNE visualizations with map points and images.
-`create_table_images`: Example TEM and STEM images are selected using their positions in tSNE visualizations.
-`create_visualization_files`: Ouputs Numpy files containing dataset principal componets and tSNE visualizations.
+`create_static_displays`: Creates tSNE visualizations with map points and images.  
+`create_table_images`: Example TEM and STEM images are selected using their positions in tSNE visualizations.  
+`create_visualization_files`: Ouputs Numpy files containing dataset principal componets and tSNE visualizations.  
 
 # Contact
 
