@@ -38,7 +38,10 @@ def hover(event):
         # place it at the position of the hovered scatter point
         ab.xy =(x[ind], y[ind])
         # set the image corresponding to that point
-        im.set_data(arr[ind,:,:])
+        if arr.shape[-1] == 1:
+            im.set_data(arr[ind,:,:,0])
+        else:
+            im.set_data(arr[ind,:,:,:])
     else:
         #if the mouse is not over a scatter point
         ab.set_visible(False)
@@ -47,11 +50,14 @@ def hover(event):
 
 if __name__ == "__main__":
 
-    SAVE_DATA = "//Desktop-sa1evjv/h/small_scans/96x96.npy"
-    SAVE_FILE = "//ads.warwick.ac.uk/shared/HCSS6/Shared305/Microscopy/Jeffrey-Ede/models/visualize_data/tsne_stem_downsampled_96x96.npy"
+    #SAVE_DATA = "//Desktop-sa1evjv/h/small_scans/96x96.npy"
+    #SAVE_FILE = "//ads.warwick.ac.uk/shared/HCSS6/Shared305/Microscopy/Jeffrey-Ede/models/visualize_data/tsne_stem_downsampled_96x96.npy"
 
     #SAVE_DATA = "//Desktop-sa1evjv/h/small_scans-tem/96x96-tem.npy"
     #SAVE_FILE = "//ads.warwick.ac.uk/shared/HCSS6/Shared305/Microscopy/Jeffrey-Ede/models/visualize_data/tsne_tem_downsampled_96x96.npy"
+
+    SAVE_DATA = "//Desktop-sa1evjv/h/wavefunctions_96x96/wavefunctions_single_n=3.npy"
+    SAVE_FILE = "//ads.warwick.ac.uk/shared/HCSS6/Shared305/Microscopy/Jeffrey-Ede/models/visualize_data/tsne_wavefunctions_single_n=3.npy"
 
     USE_FRAC = .1 #Fraction of dataset to display. Decrease from 1 if slow.
 
@@ -73,15 +79,26 @@ if __name__ == "__main__":
     y = scale0to1(y)
     tsne = np.stack([x,y], axis=-1)
 
-    arr = np.sqrt(np.sum(np.load(SAVE_DATA)**2, axis=-1))
-    arr = np.stack([scale0to1(x) for x in arr])
+    arr = np.load(SAVE_DATA)
+
+    if arr.shape[-1] == 1:
+        arr = np.stack([scale0to1(x) for x in arr])
+    else:
+        std = np.std(arr)
+        arr /= 7*std 
+        arr += ( 0.5 - np.mean(arr) )
+        arr = arr.clip(0., 1.)
+        arr = np.concatenate( (arr[...,:1], np.zeros(list(arr.shape)[:-1] + [1]), arr[...,1:]), axis=-1 )
 
     fig = plt.figure()
     ax = fig.add_subplot(111)
     line, = ax.plot(x[:int(USE_FRAC*x.shape[0])],y[:int(USE_FRAC*y.shape[0])], ls="", marker="o", color="black", alpha=1, markersize=0.5)
 
     # create the annotations box
-    im = OffsetImage(arr[0,:,:], zoom=1, cmap="gray", norm=mpl.colors.Normalize(vmin=0.,vmax=1.))
+    if arr.shape[-1] == 1:
+        im = OffsetImage(arr[0,:,:,0], zoom=1.0, cmap="gray", norm=mpl.colors.Normalize(vmin=0.,vmax=1.))
+    else:
+        im = OffsetImage(arr[0,:,:,:], zoom=1.0)
     xybox=(50., 50.)
     ab = AnnotationBbox(im, (0,0), xybox=xybox, xycoords='data',
             boxcoords="offset points",  pad=0.3,  arrowprops=dict(arrowstyle="-"))

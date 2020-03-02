@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 plt.rcParams["font.family"] = "Times New Roman"
 mpl.rcParams['xtick.direction'] = 'in'
 mpl.rcParams['ytick.direction'] = 'in'
-mpl.rcParams['savefig.dpi'] = 300
+mpl.rcParams['savefig.dpi'] = 200
 fontsize = 11
 mpl.rcParams['axes.titlesize'] = fontsize
 mpl.rcParams['axes.labelsize'] = fontsize
@@ -38,7 +38,7 @@ DATASET_NAMES = [
     ]
 
 
-SEEDS = [3, 1, 1, 1, 1, 1]
+SEEDS = [3, 1, 10, 1, 1, 1]
 
 def scale0to1(img):
     """Rescale image between 0 and 1"""
@@ -58,7 +58,8 @@ def scale0to1(img):
 
 for i, (data_file, data_name, seed) in enumerate(zip(DATASET_FILES, DATASET_NAMES, SEEDS)):
 
-    print(i)
+    #if i <= 2:
+    #    continue
 
     dataset_filepath = DATA_LOC + "tsne_" + data_name + ".npy"
     tsne = np.load(dataset_filepath)
@@ -79,32 +80,40 @@ for i, (data_file, data_name, seed) in enumerate(zip(DATASET_FILES, DATASET_NAME
 
         x = x[keep]
         y = y[keep]
-    #elif i == 3:
-    #    x0to1 = scale0to1(x)
-    #    y0to1 = scale0to1(y)
+    elif i == 3:
+        x0to1 = scale0to1(x)
+        y0to1 = scale0to1(y)
 
-    #    keep = (x0to1 > 0.15)*(x0to1 < 0.75)*(y0to1 > 0.05)
+        keep = (x0to1 > 0.35)*(y0to1 < 0.7)
 
-    #    x = x[keep]
-    #    y = y[keep]
-    #elif i == 4:
-    #    x0to1 = scale0to1(x)
-    #    y0to1 = scale0to1(y)
+        x = x[keep]
+        y = y[keep]
+    elif i == 4:
+        x0to1 = scale0to1(x)
+        y0to1 = scale0to1(y)
 
-    #    keep = (x0to1 > 0.07)
+        keep = (y0to1 > 0.45)
 
-    #    x = x[keep]
-    #    y = y[keep]
-
+        x = x[keep]
+        y = y[keep]
 
     y = scale0to1(y)
     x = scale0to1(x)
 
     tsne = np.stack([x,y], axis=-1)
 
-    arr = np.sqrt(np.sum(np.load(data_file)**2, axis=-1))
+    #arr = np.sqrt(np.sum(np.load(data_file)**2, axis=-1))
+    arr = np.load(data_file)
 
-    arr = np.stack([scale0to1(x) for x in arr])
+    if i <= 2:
+        arr = arr[...,0]
+        arr = np.stack([scale0to1(x) for x in arr])
+    else:
+        std = np.std(arr)
+        arr /= 7*std 
+        arr += ( 0.5 - np.mean(arr) )
+        arr = arr.clip(0., 1.)
+        arr = np.concatenate( (arr[...,:1], np.zeros(list(arr.shape)[:-1] + [1]), arr[...,1:]), axis=-1 )
 
     fig = plt.figure(figsize=(5, 4))
 
@@ -120,8 +129,8 @@ for i, (data_file, data_name, seed) in enumerate(zip(DATASET_FILES, DATASET_NAME
     ax.text(-0.05, 1.021, "a)")
     plt.grid()
     ax.tick_params(axis=u'both', which=u'both',length=0)
-    #plt.setp(ax.get_xticklabels(), visible=False)
-    #plt.setp(ax.get_yticklabels(), visible=False)
+    plt.setp(ax.get_xticklabels(), visible=False)
+    plt.setp(ax.get_yticklabels(), visible=False)
     for spine in plt.gca().spines.values():
         spine.set_visible(False)
 
@@ -133,15 +142,19 @@ for i, (data_file, data_name, seed) in enumerate(zip(DATASET_FILES, DATASET_NAME
     ax.text(-0.05, 1.021, "b)")
     plt.grid()
     ax.tick_params(axis=u'both', which=u'both',length=0)
-    #plt.setp(ax.get_xticklabels(), visible=False)
-    #plt.setp(ax.get_yticklabels(), visible=False)
+    plt.setp(ax.get_xticklabels(), visible=False)
+    plt.setp(ax.get_yticklabels(), visible=False)
     for spine in plt.gca().spines.values():
         spine.set_visible(False)
 
     np.random.seed(seed)
     idxs = np.random.choice(np.arange(0, tsne.shape[0]), 500, replace=False)
     for idx in idxs:
-        im = OffsetImage(arr[idx,:,:], zoom=0.2, cmap="gray", norm=mpl.colors.Normalize(vmin=0.,vmax=1.))
+        if i <= 2:
+            im = OffsetImage(arr[idx,:,:], zoom=0.2, cmap="gray", norm=mpl.colors.Normalize(vmin=0.,vmax=1.))
+        else:
+            im = OffsetImage(arr[idx,:,:,:], zoom=0.2)
+
         ab = AnnotationBbox(
             im, tsne[idx], xybox=tsne[idx], xycoords='data',  pad=0., frameon=False,
             arrowprops=dict(arrowstyle="-"))

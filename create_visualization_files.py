@@ -88,15 +88,22 @@ if __name__ == "__main__":
     for i, (dataset_file, dataset_name, pca_dimension, is_scale0to1) in enumerate(zip(
         DATASET_FILES, DATASET_NAMES, PCA_DIMENSIONS, IS_SCALE0TO1S)):
 
+        if i <= 2:
+            continue
+
         dataset = np.load(dataset_file)
         print(dataset.shape)
 
-        if is_scale0to1:
+        if is_scale0to1 and i <= 2:
             dataset = np.stack([scale0to1(preprocess(x)) for x in dataset])
 
         pc = batch_PCA(dataset, pca_dimension)
 
-        tsne = TSNE(n_components=2, verbose=1, perplexity=int(np.sqrt(pc.shape[0])), n_iter=10000).fit_transform(pc)
+        if i <= 2:
+            perplexity = int(np.sqrt(pc.shape[0]))
+        else:
+            perplexity = int(5*np.sqrt(pc.shape[0]))
+        tsne = TSNE(n_components=2, verbose=1, perplexity=perplexity, n_iter=10000).fit_transform(pc)
 
         np.save(SAVE_LOC+"pca_"+dataset_name+".npy", pc)
         np.save(SAVE_LOC+"tsne_"+dataset_name+".npy", tsne)
