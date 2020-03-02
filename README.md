@@ -31,3 +31,11 @@ In addition, there are a few noteable fles:
 # Contact
 
 Jeffrey Ede: j.m.ede@warwick.ac.uk
+
+# Example Visualization
+
+Here is an example visualization for 19769 96x96 crops from STEM images. It's my favorite due to a blot of blank images at the bottom right with a halo of noisy images. It was created from images' first 50 principal components by using a perplexity of 127.4, 10000 iterations, and [scikit-learn defaults](https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html) for other parameters.
+
+<p align="center">
+  <img src="stem_crops_96x96.png">
+</p>
