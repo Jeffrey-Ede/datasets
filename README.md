@@ -28,7 +28,7 @@ In addition, there are a few noteable fles:
 `create_table_images`: Example TEM and STEM images are selected using their positions in tSNE visualizations.  
 `create_visualization_files`: Ouputs [NumPy files](https://docs.scipy.org/doc/numpy/reference/generated/numpy.lib.format.html) containing dataset principal componets and tSNE visualizations.  
 
-Scripts used to create wavefunctions are [here](https://github.com/Jeffrey-Ede/One-Shot/tree/master/wavefunctions). They have the form "run_simulations*.py", where * is a wildcard.
+Scripts to simulate wavefunctions are [here](https://github.com/Jeffrey-Ede/One-Shot/tree/master/wavefunctions). They have the form "run_simulations*.py", where * is a wildcard.
 
 # Contact
 
