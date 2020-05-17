@@ -18,11 +18,11 @@ The files `vae_embeddings.npy` and `vae_errors` in each folder contain means and
 
 In this folder, `.npy` files starting with `vae_tsne` contain points in tSNE visualizations created from dataset embeddings. If `_we` is in a file name, it means that standard deviations were accounted for during tSNE optimization. 
 
-## Uniform tSNE
+## Uniform Separation tSNE
 
 An algorithm to uniformly separate points in tSNE visualizations (or other points plots) is in `tsne_to_uniform.py`. Uniformly separated points of a tSNE visualizations for downsampled STEM images (`2`) are in `vae_tsne_stem_crops_96x96_uniform.npy`.
 
-## tSNE with Errors
+## tSNE with Standard Deviations
 
 A fast Barnes-Hut tSNE implementation that has been adapted to account for standard deviations is in `bhtsne`. It is adapted from code [here](https://lvdmaaten.github.io/tsne/) and an unmodified version is in `unmodified_bhtsne`. Both directories contain precompiled windows binaries. Example usage is:
 
