@@ -24,7 +24,9 @@ An algorithm to uniformly separate points in tSNE visualizations (or other point
 
 ## tSNE with Standard Deviations
 
-A fast Barnes-Hut tSNE implementation that has been adapted to account for standard deviations is in `bhtsne`. It is adapted from code [here](https://lvdmaaten.github.io/tsne/) and an unmodified version is in `unmodified_bhtsne`. Both directories contain precompiled windows binaries. Example usage is:
+A fast Barnes-Hut tSNE implementation that has been adapted to account for standard deviations is in `bhtsne`. It is adapted from code [here](https://lvdmaaten.github.io/tsne/) and an unmodified version is in `unmodified_bhtsne`. There are precompiled Windows binaries in both folders.
+
+Example usage:
 
 ```python
 from bhtsne.bhtsne import run_bh_tsne
