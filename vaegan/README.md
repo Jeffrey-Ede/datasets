@@ -2,7 +2,7 @@
 
 This directory is for variational autoecoders (VAEs). It contains their source code, dataset encodings, points in tSNE visualizations (for interactive visualizations), and modified tSNE implementations.
 
-Our VAE code is is adapted from VAE-GAN code [here](https://github.com/zhangqianhui/vae-gan-tensorflow).
+Our VAE code is adapted from VAE-GAN code [here](https://github.com/zhangqianhui/vae-gan-tensorflow).
 
 ## Experiments
 
@@ -16,10 +16,34 @@ There are five directories containing source code for VAE experiments:
 
 ## Uniform tSNE
 
+An algorithm to uniformly separate points in tSNE visualizations (or other points plots) is in `tsne_to_uniform.py`. 
 
 ## tSNE with Errors
 
+A fast Barnes-Hut tSNE implementation that has been adapted to account for standard deviations is in `bhtsne`. It is adapted from code [here](https://lvdmaaten.github.io/tsne/) and an unmodified version is in `unmodified_bhtsne`. Both directories contain precompiled windows binaries. Example usage is:
 
+```python
+from bhtsne.bhtsne import run_bh_tsne
+
+... #Prepare dataset and hyperparameters for tSNE
+
+#Run tSNE
+tsne_points = run_bh_tsne(
+  embeddings, 
+  sigma, 
+  no_dims=2, 
+  perplexity=perplexity, 
+  theta=0.5, 
+  randseed=-1, 
+  verbose=True, 
+  initial_dims=embeddings.shape[-1], 
+  use_pca=False, 
+  max_iter=10_000
+)
+
+#Discard last half of returned array
+tsne_points = tsne_points[:tsne_points.shape[0]//2] 
+```
 
 ## Pretrained Models
 
