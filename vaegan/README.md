@@ -2,7 +2,7 @@
 
 This directory is for variational autoecoders (VAEs). It contains their source code, dataset encodings, points in tSNE visualizations (for interactive visualizations), and modified tSNE implementations.
 
-Our VAE code is adapted from VAE-GAN code [here](https://github.com/zhangqianhui/vae-gan-tensorflow).
+Our VAE code is adapted from VAE-GAN code [here](https://github.com/zhangqianhui/vae-gan-tensorflow). To be clear, this directory contains code for VAEs; not VAE-GANs. Nevertheless, implementations of a discriminator and [spectral normalization]() are included, so the code can easily be re-adapted to train VAE-GANs.
 
 ## Experiments
 
