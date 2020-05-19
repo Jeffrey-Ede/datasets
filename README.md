@@ -41,9 +41,9 @@ Jeffrey Ede: j.m.ede@warwick.ac.uk
 
 # Example Visualization
 
-An example tSNE visualization for 19769 STEM images downsampled to 96x96 is shown below. It was created by training a VAE to encode images means and standard deviations in 64 dimensions. Standard deviations were then used to weight the clustering of means in 2 dimensions by tSNE. Finally, map points were uniformly separated. Images are shown for tSNE points closest to 20x35 grid points. 
+An example tSNE visualization for 19769 96x96 crops from STEM images. It was created by training a VAE to encode images means and standard deviations in 64 dimensions. Standard deviations were then used to weight the clustering of means in 2 dimensions by tSNE. Images are shown at 500 randomly sampled points.
 
 
 <p align="center">
-  <img src="vaegan/vae_stem_downsampled_96x96_uniform.png">
+  <img src="vaegan/vae_stem_crops_96x96.png">
 </p>
