@@ -1,6 +1,6 @@
 """Simple algorithm to uniformly distribute tSNE points.
 
-This implementation is for 2D and has not been optimized in any way.
+This 2D implementation is for demonstration purposes andand has not been optimized.
 
 Author: Jeffrey Ede
 Email: j.m.ede@warwick.ac.uk
@@ -8,11 +8,14 @@ Email: j.m.ede@warwick.ac.uk
 
 import numpy as np
 
-TSNE_POINTS_FILE = r"Y:/HCSS6/Shared305/Microscopy/Jeffrey-Ede/models/visualize_data/vaegan/vae_tsne_stem_crops_96x96.npy"
-SAVE_FILE = r"Y:/HCSS6/Shared305/Microscopy/Jeffrey-Ede/models/visualize_data/vaegan/vae_tsne_stem_crops_96x96_uniform.npy"
+BASE = r"Y:/HCSS6/Shared305/Microscopy/Jeffrey-Ede/models/visualize_data/"
+NAME = "stem_crops_96x96"
+TSNE_POINTS_FILE = BASE + r"vaegan/vae_tsne_" + NAME + ".npy"
+SAVE_FILE = BASE + r"vaegan/vae_tsne_" + NAME + "_uniform.npy"
+GAMMA = 0.3
 GRID_SIZE = 100
 TOL = 1e-4 # Stop iteration after maximum change is below this proportion of point support
-MAX_ITER = 500
+MAX_ITER = 100
 
 def scale0to1(img):
     """Rescale image between 0 and 1"""
@@ -55,7 +58,9 @@ while err >= TOL and iters < MAX_ITER:
         idxs = full_idxs[select]
 
         #Map to uniformly separated new positions
-        y[idxs[np.argsort(y[select])]] = np.linspace(0, 1, num=int(np.sum(select)))
+        y[idxs[np.argsort(y[select])]] += GAMMA*(
+            np.linspace(0, 1, num=int(np.sum(select))) - 
+            y[idxs[np.argsort(y[select])]])
 
     _max = -1.e-6
     for i in range(GRID_SIZE):
@@ -68,7 +73,9 @@ while err >= TOL and iters < MAX_ITER:
         idxs = full_idxs[select]
 
         #Map to uniformly separated new positions
-        x[idxs[np.argsort(x[select])]] = np.linspace(0, 1, num=int(np.sum(select)))
+        x[idxs[np.argsort(x[select])]] = GAMMA*(
+            np.linspace(0, 1, num=int(np.sum(select))) - 
+            x[idxs[np.argsort(x[select])]])
 
     err = np.mean(np.sqrt( (x-x0)**2 + (y-y0)**2 ))
 
