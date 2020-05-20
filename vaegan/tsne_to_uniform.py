@@ -73,7 +73,7 @@ while err >= TOL and iters < MAX_ITER:
         idxs = full_idxs[select]
 
         #Map to uniformly separated new positions
-        x[idxs[np.argsort(x[select])]] = GAMMA*(
+        x[idxs[np.argsort(x[select])]] += GAMMA*(
             np.linspace(0, 1, num=int(np.sum(select))) - 
             x[idxs[np.argsort(x[select])]])
 
