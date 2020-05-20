@@ -9,7 +9,7 @@ Email: j.m.ede@warwick.ac.uk
 import numpy as np
 
 BASE = r"Y:/HCSS6/Shared305/Microscopy/Jeffrey-Ede/models/visualize_data/"
-NAME = "stem_crops_96x96"
+NAME = "tem_downsampled_96x96"
 TSNE_POINTS_FILE = BASE + r"vaegan/vae_tsne_" + NAME + ".npy"
 SAVE_FILE = BASE + r"vaegan/vae_tsne_" + NAME + "_uniform.npy"
 GAMMA = 0.3
@@ -58,7 +58,7 @@ while err >= TOL and iters < MAX_ITER:
         idxs = full_idxs[select]
 
         #Map to uniformly separated new positions
-        y[idxs[np.argsort(y[select])]] = (1-GAMMA)*y[idxs[np.argsort(y[select])]] + GAMMA*(
+        y[idxs[np.argsort(y[select])]] = y[idxs[np.argsort(y[select])]] + GAMMA*(
             np.linspace(0, 1, num=int(np.sum(select))) - 
             y[idxs[np.argsort(y[select])]])
 
@@ -73,7 +73,7 @@ while err >= TOL and iters < MAX_ITER:
         idxs = full_idxs[select]
 
         #Map to uniformly separated new positions
-        x[idxs[np.argsort(x[select])]] = (1-GAMMA)*x[idxs[np.argsort(x[select])]] + GAMMA*(
+        x[idxs[np.argsort(x[select])]] = x[idxs[np.argsort(x[select])]] + GAMMA*(
             np.linspace(0, 1, num=int(np.sum(select))) - 
             x[idxs[np.argsort(x[select])]])
 
