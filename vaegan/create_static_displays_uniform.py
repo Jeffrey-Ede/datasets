@@ -91,6 +91,10 @@ for i, (data_file, data_name, seed, P) in enumerate(zip(DATASET_FILES, DATASET_N
     tsne = np.load(dataset_filepath)
     print(tsne.shape)
 
+    is_in_convex_hull = np.isfinite(tsne[:,0])*np.isfinite(tsne[:,1])
+
+    tsne = tsne[is_in_convex_hull]
+
     x = tsne[:,0]
     y = tsne[:,1]
 
@@ -99,8 +103,8 @@ for i, (data_file, data_name, seed, P) in enumerate(zip(DATASET_FILES, DATASET_N
 
     tsne = np.stack([x,y], axis=-1)
 
-    #arr = np.sqrt(np.sum(np.load(data_file)**2, axis=-1))
     arr = np.load(data_file)
+    arr = arr[is_in_convex_hull]
 
     if i <= 4:
         arr = arr[...,0]
