@@ -20,7 +20,7 @@ In this folder, `.npy` files starting with `vae_tsne` contain points in tSNE vis
 
 ## Uniform Separation tSNE
 
-An algorithm to uniformly separate points in tSNE visualizations (or other points plots) is in `tsne_to_uniform.py`. Uniformly separated points of a tSNE visualizations for downsampled STEM images (`2`) are in `vae_tsne_stem_crops_96x96_uniform.npy`.
+An algorithm to uniformly separate points in tSNE visualizations (or other points plots) is in `conditional_tsne_to_uniform.py`. Uniformly separated points of a tSNE visualizations for downsampled STEM images (`2`) are in `vae_tsne_stem_crops_96x96_uniform.npy`.
 
 ## tSNE with Standard Deviations
 
