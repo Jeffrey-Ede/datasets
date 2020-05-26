@@ -14,7 +14,7 @@ There are five directories containing source code for VAE experiments:
 `4`: STEM crops without gradient loss  
 `5`: STEM crops with Kullback-Liebler divergence, rather than feature normalization and regularization.
 
-The files `vae_embeddings.npy` and `vae_errors` in each folder contain means and standard deviations, respectively, of latent spaces encoded by VAEs for each datasets. 
+The files `vae_embeddings.npy` and `vae_errors` in each folder contain means and standard deviations, respectively, of latent spaces encoded by VAEs for each dataset. 
 
 In this folder, `.npy` files starting with `vae_tsne` contain points in tSNE visualizations created from dataset embeddings. If `_we` is in a file name, it means that standard deviations were accounted for during tSNE optimization. 
 
