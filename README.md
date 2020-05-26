@@ -41,7 +41,7 @@ Jeffrey Ede: j.m.ede@warwick.ac.uk
 
 # Example Visualization
 
-An example tSNE visualization for 19769 96x96 crops from STEM images. It was created by training a VAE to encode images means and standard deviations in 64 dimensions. Standard deviations were then used to weight the clustering of means in 2 dimensions by tSNE. Images are shown at 500 randomly sampled points.
+An example tSNE visualization for 19769 96x96 crops from STEM images. It was created by training a VAE to encode images as 64-dimensional means and standard deviations of normal distributions. Standard deviations were then used to weight the clustering of means in 2 dimensions by tSNE. Images are shown at 500 randomly sampled points.
 
 
 <p align="center">
