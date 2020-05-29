@@ -12,15 +12,15 @@ There are five directories containing source code for VAE experiments:
 `2`: Downsampled STEM  
 `3`: Downsampled TEM  
 `4`: STEM crops without gradient loss  
-`5`: STEM crops with Kullback-Liebler divergence, rather than feature normalization and regularization.
+`5`: STEM crops with Kullback-Liebler divergence, rather than encoding normalization and regularization.
 
 The files `vae_embeddings.npy` and `vae_errors` in each folder contain means and standard deviations, respectively, of latent spaces encoded by VAEs for each dataset. 
 
 In this folder, `.npy` files starting with `vae_tsne` contain points in tSNE visualizations created from dataset embeddings. If `_we` is in a file name, it means that standard deviations were accounted for during tSNE optimization. 
 
-## Uniform Separation tSNE
+## Uniformly Separated tSNE
 
-An algorithm to uniformly separate points in tSNE visualizations (or other points plots) is in `conditional_tsne_to_uniform.py`. Uniformly separated points of a tSNE visualizations for downsampled STEM images (`2`) are in `vae_tsne_stem_crops_96x96_uniform.npy`.
+An algorithm to uniformly separate points in tSNE visualizations (or other points plots) is in `conditional_tsne_to_uniform.py`. It is based on interpolating coniditional Bayes sampling probabilities. Uniformly separated points of a tSNE visualizations for downsampled STEM images (`2`) are in `vae_tsne_stem_crops_96x96_uniform.npy`.
 
 ## tSNE with Standard Deviations
 
@@ -50,6 +50,10 @@ tsne_points = run_bh_tsne(
 #Discard last half of returned array
 tsne_points = tsne_points[:tsne_points.shape[0]//2] 
 ```
+
+## Search Engines
+
+A script, `search_engine_examples.py`, shows that our VAE encodings can be used as the basis of image search engines. We expect that search results could be improved by increasing training iterations and dataset size. Most commercial search engines are trained with over 1000x more computational resources and training data.
 
 ## Pretrained Models
 
