@@ -6,7 +6,7 @@ This repository is for the [preprint](https://arxiv.org/abs/2003.01113)|paper "W
 
 There are three main datasets containing 19769 experimental STEM images, 17266 experimental TEM images and 98340 simulated TEM exit wavefunctions. Datasets are available [here](https://github.com/Jeffrey-Ede/datasets/wiki).
 
-Scrips and data for variational autoencoders (VAEs) and modified to t-distributed stochastic neighbor embedding (tSNE) are in the `vaegan` subdirectory. Pretrained VAEs are [here](https://drive.google.com/drive/folders/1vdEKgrg6ymsvBO0LnwCPbfpeqZ9Z7Kan?usp=sharing).
+Scrips and data for variational autoencoders (VAEs) and modified t-distributed stochastic neighbor embedding (tSNE) are in the `vaegan` subdirectory. Pretrained VAEs are [here](https://drive.google.com/drive/folders/1vdEKgrg6ymsvBO0LnwCPbfpeqZ9Z7Kan?usp=sharing).
 
 # Interactive Visualizations
 
