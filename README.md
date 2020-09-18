@@ -2,7 +2,7 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3708904.svg)](https://doi.org/10.5281/zenodo.3834197)
 
-This repository is for the [preprint](https://arxiv.org/abs/2003.01113)|paper "Warwick Electron Microscopy Datasets". It supplements datasets by providing scripts used to curate datasets and their variants, and to create both static and interactive visualizations.
+This repository is for the [preprint](https://arxiv.org/abs/2003.01113)|[paper](https://dx.doi.org/10.1088/2632-2153/ab9c3c) "Warwick Electron Microscopy Datasets". It supplements datasets by providing scripts used to curate datasets and their variants, and to create both static and interactive visualizations.
 
 There are three main datasets containing 19769 experimental STEM images, 17266 experimental TEM images and 98340 simulated TEM exit wavefunctions. Datasets are available [here](https://github.com/Jeffrey-Ede/datasets/wiki).
 
